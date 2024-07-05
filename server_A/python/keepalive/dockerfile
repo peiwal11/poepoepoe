@@ -1,0 +1,7 @@
+FROM registry.inventec/proxy/alpine:3.20.1
+RUN  apk --no-cache add keepalived bash curl
+COPY keepalive.conf /etc/keepalived/keepalived.conf
+COPY healthcheck.sh /usr/local/bin/healthcheck.sh
+RUN chmod +x /usr/local/bin/healthcheck.sh
+CMD ["keepalived", "--dont-fork","--log-console"]
+
