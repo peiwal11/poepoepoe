@@ -7,36 +7,36 @@
 #### These diagrams are intended to help us better understand how this project operates.     
 
 
-######  Network Structure    
+###  Network Structure    
   This diagram shows the structure of this project, there are two server, ServerA and ServerB  
   Each server hosts a complete stack including Keepalived, Kong, Nginx, and three Python containers.  
   On both server, Kong container locates at kong network and Nginx with three Python containers locate at another network named mdk.   
-  Virtual IP: 10.191.7.231   
-  ServerA IP: 10.191.7.17  
-  ServerB IP: 10.191.7.16  
-  A client sends a request to the VIP managed by Keepalived. Keepalived directs the request to one of the Kong instances (either on server A or server B). Kong processes the request and forwards it to one of the Nginx instances (either on server A or server B). Nginx balances the load and forwards the request to one of the three Pytho   n.     
-  
-  ![network struture](./network structure.jpg)    
+  - Virtual IP: 10.191.7.231   
+  - ServerA IP: 10.191.7.17  
+  - ServerB IP: 10.191.7.16  
+  A client sends a request to the VIP managed by Keepalived. Keepalived directs the request to one of the Kong instances (either on server A or server B). Kong processes the request and forwards it to one of the Nginx instances (either on server A or server B). Nginx balances the load and forwards the request to one of the three Python.     
+
+![network structure](network_structure.jpg)    
 
 
-######  Request flow while sending curl request from my computer, where 127.2.0.1 is a alternative loopback path and with a rule that map localhost:8123 to VirtualIP:8000 where also include two servers that is 10.0.2.15 and 10.0.2.16.  
+###  Request flow while sending curl request from my computer
+127.2.0.1 is an alternative loopback path and with a rule that maps localhost:8123 to VirtualIP:8000.  
         
-      this diagram drew based on docker-compose logs
+this diagram was drawn based on docker-compose logs
 
-      ![mycomputer_send_request_through_loopback](./request_flow_while_docker-compose_runs_on_vm.jpg)    
+![mycomputer_send_request_through_loopback](request_flow_while_docker-compose_runs_on_vm.jpg)    
 
 
-######  address Kong and Nginx using different server      
+###  address Kong and Nginx using different servers      
     
-      this diagram drawed based on  sudo tcpdump  
+this diagram was drawn based on  sudo tcpdump  
 
-      ![kong_and_nginx_on_different_server](./kong_nginx_at_diff_server.jpg)
+![kong_and_nginx_on_different_server](kong_nginx_at_diff_server.jpg)
 
-######  curl VirtualIP:8000 from my computer, both Kong and Nginx serving from one server       
+### Curl VirtualIP:8000 from my computer, both Kong and Nginx serving from one server       
     
-      this diagram drew based on sudo tcpdump    
-      
-      ![docker_network](./request_flow_caught_packet.png)      
+this diagram was drawn based on sudo tcpdump    
+![docker_network](request_flow_caught_packet.png)      
 
       
 
