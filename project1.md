@@ -27,7 +27,7 @@ this diagram was drawn based on docker-compose logs
 ![mycomputer_send_request_through_loopback](request_flow_while_docker-compose_runs_on_vm.jpg)    
 
 
-###  address Kong and Nginx using different servers      
+###  Address Kong and Nginx using different servers      
     
 this diagram was drawn based on  sudo tcpdump  
 
